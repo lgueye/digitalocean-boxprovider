@@ -6,6 +6,7 @@ import com.myjeeva.digitalocean.exception.DigitalOceanException;
 import com.myjeeva.digitalocean.exception.RequestUnsuccessfulException;
 import org.diveintojee.poc.digitaloceanboxprovider.domain.Intent;
 import org.diveintojee.poc.digitaloceanboxprovider.domain.Request;
+import org.diveintojee.poc.digitaloceanboxprovider.domain.SupportedProvider;
 import org.diveintojee.poc.digitaloceanboxprovider.service.DigitalOceanProviderCreateLineCommand;
 import org.diveintojee.poc.digitaloceanboxprovider.service.DigitalOceanProviderDropLineCommand;
 import org.junit.Rule;

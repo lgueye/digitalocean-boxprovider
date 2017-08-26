@@ -2,7 +2,6 @@ package org.diveintojee.poc.digitaloceanboxprovider.domain;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import org.diveintojee.poc.digitaloceanboxprovider.SupportedProvider;
 
 import java.util.List;
 

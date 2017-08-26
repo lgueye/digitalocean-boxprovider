@@ -25,13 +25,15 @@ public class AnsibleInventoryWriterTest {
 
     @Test
     public void write() throws Exception {
+        final String inventoryName = "vintagezerodowntime";
+        underTest.setInventoryName(inventoryName);
         // Given
         final String inventoryAsString = "any inventory";
 
         // When
         underTest.write(inventoryAsString);
 
-        final File file = new File(Paths.get(System.getProperty("user.home"), ".digitalocean", "vintagezerodowntime").toString());
+        final File file = new File(Paths.get(System.getProperty("user.home"), "inventories", inventoryName).toString());
         // will be deleted at the end of the build
         file.deleteOnExit();
         String actual = Files.toString(file, Charsets.UTF_8);

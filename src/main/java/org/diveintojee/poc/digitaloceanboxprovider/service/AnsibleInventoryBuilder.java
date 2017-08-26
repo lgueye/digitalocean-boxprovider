@@ -18,7 +18,7 @@ public class AnsibleInventoryBuilder {
 
 //	private static final Logger LOGGER = LoggerFactory.getLogger(AnsibleInventoryBuilder.class);
 
-	public String build(List<Box> boxes) throws IOException {
+	String build(List<Box> boxes) throws IOException {
 		Map<String, List<Box>> sections = Maps.newTreeMap();
 		for (Box box : boxes) {
 			final List<String> tokens = Lists.newArrayList(Splitter.on("-").split(box.getName()));

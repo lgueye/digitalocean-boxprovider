@@ -2,6 +2,7 @@ package org.diveintojee.poc.digitaloceanboxprovider.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -16,9 +17,16 @@ public class AnsibleInventoryWriter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnsibleInventoryWriter.class);
 
-	public void write(String inventoryAsString) throws IOException {
+	private String inventoryName;
+
+	@Value("${inventory}")
+	public void setInventoryName(String inventoryName) {
+		this.inventoryName = inventoryName;
+	}
+
+	void write(String inventoryAsString) throws IOException {
 		// Write content
-		String inventoryPath = Paths.get(System.getProperty("user.home"), ".digitalocean", "vintagezerodowntime").toString();
+		String inventoryPath = Paths.get(System.getProperty("user.home"), "inventories", inventoryName).toString();
 		Files.deleteIfExists(Paths.get(inventoryPath));
 		File file = new File(inventoryPath);
 		final boolean parentsCreated = file.getParentFile().mkdirs();

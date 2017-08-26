@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.verify;
+
 /**
  * @author louis.gueye@gmail.com
  */
@@ -21,11 +23,15 @@ public class DigitalOceanProviderDropLineCommandTest {
 
     @Test
     public void run() throws Exception {
+        // Given
+        final String inventoryName = "vintagezerodowntime";
+        underTest.setInventoryName(inventoryName);
+
         // When
         underTest.run();
 
         // Then
-        Mockito.verify(digitalOceanClient).deleteDropletByTagName("vintagezerodowntime");
+        verify(digitalOceanClient).deleteDropletByTagName(inventoryName);
     }
 
 }

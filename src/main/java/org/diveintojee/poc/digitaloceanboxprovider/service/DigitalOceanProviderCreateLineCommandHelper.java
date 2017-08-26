@@ -9,6 +9,7 @@ import com.myjeeva.digitalocean.pojo.*;
 import org.diveintojee.poc.digitaloceanboxprovider.domain.Box;
 import org.diveintojee.poc.digitaloceanboxprovider.domain.Specification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,10 +28,16 @@ public class DigitalOceanProviderCreateLineCommandHelper {
 //    private static final Logger LOGGER = LoggerFactory.getLogger(DigitalOceanProviderCreateLineCommand.class);
 
     private DigitalOceanClient digitalOceanClient;
+    private String inventoryName;
 
     @Autowired
     public void setDigitalOceanClient(DigitalOceanClient digitalOceanClient) {
         this.digitalOceanClient = digitalOceanClient;
+    }
+
+    @Value("${inventory}")
+    public void setInventoryName(String inventoryName) {
+        this.inventoryName = inventoryName;
     }
 
     Map<String, List<String>> boxNamesBySize(Specification specification) {
@@ -57,7 +64,7 @@ public class DigitalOceanProviderCreateLineCommandHelper {
             droplet.setEnableIpv6(true);
             droplet.setNames(entry.getValue());
             droplet.setSize(entry.getKey());
-            droplet.setTags(Lists.newArrayList("vintagezerodowntime", env));
+            droplet.setTags(Lists.newArrayList(inventoryName, env));
             result.add(droplet);
         }
         return result;

@@ -66,7 +66,9 @@ public class DigitalOceanProviderCreateLineCommandHelperTest {
         final ArrayList<String> names1 = Lists.newArrayList("local-b1");
         final String size1 = "2go";
         boxNamesBySize.putIfAbsent(size1, names1);
-        final List<String> tags = Lists.newArrayList("vintagezerodowntime", env);
+        final String inventoryName = "vintagezerodowntime";
+        underTest.setInventoryName(inventoryName);
+        final List<String> tags = Lists.newArrayList(inventoryName, env);
 
         // When
         final List<Droplet> actual = underTest.digitalOceanRequests(region, image, env, keys, boxNamesBySize);
